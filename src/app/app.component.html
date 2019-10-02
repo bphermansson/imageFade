@@ -1,0 +1,30 @@
+<!-- 
+  @fade = trigger name
+  isVisible = app variable for state
+  visible/inVisible - state for the div 
+
+  Here a ternary operator is used:
+
+  condition ? <if true> : <if false>
+
+  Pseudo code:
+  "if isVisible is true , send 'visible' to @fade, else send 'invisible'"
+
+-->
+<div class="clock">
+  {{ now | date:'HH:mm:ss'}}
+</div>
+<div class="timer">
+  {{counter}}
+</div>
+<div>
+  {{anim_state}}
+</div>
+<div [ngStyle]="{'background-image': 'url(' + imgShowed + ')', 
+  'background-size': 'cover'  }"
+  class="picture"
+  [@fade]="isVisible ? 'visible' : 'invisible'"
+  (@fade.done)="animEnd($event)"
+  (click)="toggle()"
+  >
+</div>
